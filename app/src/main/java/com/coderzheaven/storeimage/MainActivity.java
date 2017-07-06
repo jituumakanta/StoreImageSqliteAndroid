@@ -54,11 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    // Show simple message using SnackBar
-    void showMessage(String message) {
-       // Snackbar snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_LONG);
-       // snackbar.show();
-    }
+
 
     // Choose an image from Gallery
     void openImageChooser() {

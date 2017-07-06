@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/StoreImage.iml" filepath="$PROJECT_DIR$/StoreImage.iml" />
       <module fileurl="file://$PROJECT_DIR$/StoreImageSqliteAndroid.iml" filepath="$PROJECT_DIR$/StoreImageSqliteAndroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StoreImageSqliteAndroid.iml" filepath="$PROJECT_DIR$/StoreImageSqliteAndroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
