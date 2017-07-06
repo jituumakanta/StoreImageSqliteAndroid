@@ -7,7 +7,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class DBHelper {
+public class database {
 
     public static final String IMAGE_ID = "id";
     public static final String IMAGE = "image";
@@ -24,7 +24,7 @@ public class DBHelper {
     private static final String CREATE_IMAGES_TABLE =
             "CREATE TABLE " + IMAGES_TABLE + " (" +
                     IMAGE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + IMAGE + " BLOB NOT NULL );";
+                    + IMAGE + " BLOB );";
 
 
     private static class DatabaseHelper extends SQLiteOpenHelper {
@@ -46,12 +46,12 @@ public class DBHelper {
         mDbHelper.onUpgrade(this.mDb, 1, 1);
     }
 
-    public DBHelper(Context ctx) {
+    public database(Context ctx) {
         mContext = ctx;
         mDbHelper = new DatabaseHelper(mContext);
     }
 
-    public DBHelper open() throws SQLException {
+    public database open() throws SQLException {
         mDb = mDbHelper.getWritableDatabase();
         return this;
     }

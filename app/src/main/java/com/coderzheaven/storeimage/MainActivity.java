@@ -3,15 +3,14 @@ package com.coderzheaven.storeimage;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,7 +24,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     FloatingActionButton btnSelectImage;
     AppCompatImageView imgView;
 
-    DBHelper dbHelper;
+    database dbHelper;
+    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,21 +35,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setSupportActionBar(toolbar);
 
         // Find the views...
-        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
+        //coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
         btnSelectImage = (FloatingActionButton) findViewById(R.id.btnSelectImage);
         imgView = (AppCompatImageView) findViewById(R.id.imgView);
+        button=(Button)findViewById(R.id.button);
 
         btnSelectImage.setOnClickListener(this);
 
         // Create the Database helper object
-        dbHelper = new DBHelper(this);
+        dbHelper = new database(this);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("ssho");
+                loadImageFromDB();
+            }
+        });
 
     }
 
     // Show simple message using SnackBar
     void showMessage(String message) {
-        Snackbar snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_LONG);
-        snackbar.show();
+       // Snackbar snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_LONG);
+       // snackbar.show();
     }
 
     // Choose an image from Gallery
@@ -65,25 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (requestCode == SELECT_PICTURE) {
 
                 Uri selectedImageUri = data.getData();
-
-                if (null != selectedImageUri) {
-
-                    // Saving to Database...
-                    if (saveImageInDB(selectedImageUri)) {
-                        showMessage("Image Saved in Database...");
-                        imgView.setImageURI(selectedImageUri);
-                    }
-
-                    // Reading from Database after 3 seconds just to show the message
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (loadImageFromDB()) {
-                                showMessage("Image Loaded from Database...");
-                            }
-                        }
-                    }, 3000);
-                }
+                saveImageInDB(selectedImageUri);
 
             }
         }
